@@ -24,15 +24,42 @@
         "Декабрь",
     ]
 
-    const year = 2026
+    let year: number | null = (new Date).getFullYear()
+
+    const CELLS = 42
+
+    // 42 ячеек на месяц: номер дня или null для пустых
+    function monthCells(year: number, month: number): (number | null)[] {
+        const offset = (new Date(year, month, 1).getDay() + 6) % 7 // ПН = 0
+        const daysCount = new Date(year, month + 1, 0).getDate()
+
+        return Array.from({ length: CELLS, }, (_, i) => {
+            const day = i - offset + 1
+
+            return day >= 1 && day <= daysCount ? day : null
+        })
+    }
+
+    $: validYear = year !== null && Number.isInteger(year) && year >= 1000 && year <= 9999
+    $: calendar = validYear ? months.map((_, m) => monthCells(year!, m)) : []
 </script>
 
 <svelte:head>
     <title>Календарь</title>
 </svelte:head>
 
-<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
-{#each months as month}
+<label class="year-input">
+    Год
+    <input
+        max="9999"
+        min="1000"
+        type="number"
+        bind:value={year}
+    />
+</label>
+
+{#each calendar as cells, m}
+    {@const month = months[m]}
     <div class="a4 ff f-col">
         <div class="title-line ffb">
             <div class="display month">{month}</div>
@@ -48,10 +75,13 @@
                     {/each}
                 </div>
                 <div class="days">
-                    {#each Array(42) as _}
+                    {#each cells as day}
                         <div class="day">
-                            <div class="day-number">1</div>
+                            {#if day !== null}
+                                <div class="day-number">{day}</div>
+                            {/if}
                             <div class="day-lines ffb f-col">
+                                <!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
                                 {#each Array(6) as _}
                                     <div class="day-line" />
                                 {/each}
@@ -66,7 +96,7 @@
 
 <style lang="scss">
 
-    $border: 1px solid black;
+    $border: thin solid black;
     @mixin border {
         border-bottom: $border;
         border-right: $border;
@@ -75,6 +105,15 @@
     @mixin thin-title {
         transform: scaleX(85%);
         font-weight: 700;
+    }
+
+    .year-input {
+        display: block;
+        margin: 20px 20px 0;
+
+        input {
+            width: 6em;
+        }
     }
 
     .a4 {
@@ -181,11 +220,16 @@
         :global(html, body) {
             width: 100vw;
             height: 100vh;
+            print-color-adjust: exact;
         }
 
         .a4 {
             outline: none;
             margin: 0;
+        }
+
+        .year-input {
+            display: none;
         }
     }
 </style>
