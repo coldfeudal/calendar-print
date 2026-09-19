@@ -124,6 +124,10 @@
         break-after: page;
         margin: 20px;
 
+        &:last-child {
+            break-after: auto;
+        }
+
         .title-line {
             font-size: 60px;
             font-size: 60px;
