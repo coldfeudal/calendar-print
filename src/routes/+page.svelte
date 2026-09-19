@@ -48,7 +48,7 @@
     <title>Календарь</title>
 </svelte:head>
 
-<label class="year-input">
+<div class="year-input">
     Год
     <input
         max="9999"
@@ -56,7 +56,14 @@
         type="number"
         bind:value={year}
     />
-</label>
+</div>
+
+<div
+    class="print-button"
+    on:click={() => {print()}}
+>
+    Печатать
+</div>
 
 {#each calendar as cells, m}
     {@const month = months[m]}
@@ -112,8 +119,21 @@
         margin: 20px 20px 0;
 
         input {
-            width: 6em;
+            padding: 5px 10px;
+            outline: none;
+            border: 1px solid black;
+            margin-left: 5px;
         }
+    }
+
+    .print-button {
+        margin: 20px 20px 0;
+        padding: 8px 16px;
+        border: 1px solid black;
+        border-radius: 16px;
+        user-select: none;
+        cursor: pointer;
+        display: inline-block;
     }
 
     .a4 {
@@ -232,7 +252,7 @@
             margin: 0;
         }
 
-        .year-input {
+        .year-input, .print-button {
             display: none;
         }
     }
