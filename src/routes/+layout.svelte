@@ -4,7 +4,7 @@
 
 <svelte:head>
     <link
-        href="/fonts/Montserrat/font.css"
+        href="/fonts/Inter/font.css"
         rel="stylesheet"
     />
 </svelte:head>
