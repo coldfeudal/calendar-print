@@ -1,0 +1,91 @@
+{
+    "restoreTerminals.runOnStartup": true,
+    "restoreTerminals.terminals": [
+        {
+            "splitTerminals": [
+                {
+                    "name": "run",
+                    "commands": []
+                },
+                {
+                    "name": "powershell",
+                    "commands": []
+                },
+            ]
+        }
+    ],
+    "restoreTerminals.keepExistingTerminalsOpen": false,
+    "editor.formatOnType": false,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false,
+    // "[svelte]": {
+    //     "editor.formatOnType": true,
+    //     "editor.formatOnPaste": true,
+    //     "editor.formatOnSave": true,
+    // },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[css]": {
+        "editor.suggest.insertMode": "replace"
+    },
+    "[sass]": {
+        "editor.defaultFormatter": "syler.sass-indented",
+        "editor.suggest.insertMode": "replace"
+    },
+    "[svg]": {
+        "editor.defaultFormatter": "jock.svg"
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "never",
+        "source.organizeImports": "never",
+        "source.fixAll.eslint": "always"
+    },
+    "svelte.plugin.svelte.compilerWarnings": {
+        "a11y-click-events-have-key-events": "ignore",
+        "a11y-no-static-element-interactions": "ignore",
+        "a11y-no-noninteractive-element-interactions": "ignore",
+        "a11y-missing-attribute": "ignore",
+    },
+    "workbench.editor.customLabels.patterns": {
+        "**/routes/+*.*": "index/${filename}.${extname}",
+        "**/routes/*/**/+*.*": "${dirname}/${filename}.${extname}",
+    },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact", 
+        "svelte"
+    ],
+    "auto-close-tag.disableOnLanguage": [
+        "svelte"
+    ],
+    "auto-rename-tag.activationOnLanguage": [
+        "xml",
+        "php",
+        "blade",
+        "ejs",
+        "jinja",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+    ],
+    "editor.linkedEditing": true,
+    "compile-hero.disable-compile-files-on-did-save-code": true,
+    "eslint.useFlatConfig": false,
+    "eslint.debug": false,
+    "json.schemaDownload.enable": false,
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "/package.json"
+            ],
+            "url": "vscode://schemas/package"
+        }
+    ],
+}

@@ -1,0 +1,54 @@
+@use "../vars"
+@use "../vars/vars-sass"
+@use "../vars/vars-flex"
+@use "../vars/vars-mixins"
+@use "../vars/vars-mobile"
+
+.sq
+    aspect-ratio: 1
+
+.bc
+    background-size: contain
+    background-position: center center
+    background-repeat: no-repeat
+
+.bcv
+    @extend .bc
+    background-size: cover
+
+.bc-sq
+    @extend .sq
+    @extend .bc
+
+.bcv-sq
+    @extend .sq
+    @extend .bcv
+
+.underline
+    text-decoration: underline
+    text-underline-offset: .23em
+
+.nodisp
+    display: none !important
+
+.pc
+    @include vars.mobile
+        display: none !important
+
+.mob
+    @include vars.pc
+        display: none !important
+
+.mob-1440
+    @include vars.pc(1440px)
+        display: none !important
+
+.pc-1440
+    @include vars.mobile(1440px)
+        display: none !important
+
+.tc
+    text-align: center
+
+.b
+    font-weight: bold

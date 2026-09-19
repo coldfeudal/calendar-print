@@ -1,0 +1,24 @@
+{
+    "recommendations": [
+        "svelte.svelte-vscode",
+        "EthanSK.restore-terminals",
+        "dbaeumer.vscode-eslint",
+        "formulahendry.auto-close-tag",
+        "formulahendry.auto-rename-tag",
+        "aaron-bond.better-comments",
+        "formulahendry.code-runner",
+        "mhutchie.git-graph",
+        "maattdd.gitless",
+        "bradgashler.htmltagwrap",
+        "mrmlnc.vscode-json5",
+        "bierner.markdown-preview-github-styles",
+        "DavidAnson.vscode-markdownlint",
+        "christian-kohler.npm-intellisense",
+        "esbenp.prettier-vscode",
+        "mechatroner.rainbow-csv",
+        "syler.sass-indented",
+        "gencer.html-slim-scss-css-class-completion",
+        "mrmlnc.vscode-scss",
+        "DotJoshJohnson.xml",
+    ]
+}

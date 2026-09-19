@@ -1,0 +1,68 @@
+@use "../vars"
+@use "presets-misc"
+
+.before
+    &::before
+        content: ''
+        display: block
+
+.bc-before
+    @extend .before
+    display: flex
+    align-items: center
+
+    &::before
+        @extend .bc
+
+.bcv-before
+    @extend .before
+    display: flex
+    align-items: center
+
+    &::before
+        @extend .bcv
+
+.before-sq
+    @extend .bc-before
+
+    &::before
+        aspect-ratio: 1
+
+.after-sq
+    @extend .bc-after
+
+    &::after
+        aspect-ratio: 1
+
+.before-sq-cv
+    @extend .bcv-before
+
+    &::before
+        aspect-ratio: 1
+
+.after-sq-cv
+    @extend .bcv-after
+
+    &::after
+        aspect-ratio: 1
+
+.after
+    &::after
+        content: ''
+        display: block
+
+.bc-after
+    @extend .after
+    display: flex
+    align-items: center
+
+    &::after
+        @extend .bc
+
+.bcv-after
+    @extend .after
+    display: flex
+    align-items: center
+
+    &::after
+        @extend .bcv

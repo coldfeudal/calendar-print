@@ -1,0 +1,41 @@
+@use "vars-mobile"
+
+@mixin reset-slider($newsize: null)
+    @include vars-mobile.pc($newsize)
+        width: auto
+        display: auto
+        column-gap: auto
+        background-color: auto
+        overflow-x: auto
+        scroll-snap-type: auto
+        -ms-overflow-style: auto
+        scrollbar-width: auto
+        @content
+
+@mixin slider-sass
+    width: 100%
+    display: flex
+    column-gap: 1px
+    overflow-x: scroll
+    // scroll-snap-type: x mandatory
+    // -ms-overflow-style: none
+    scrollbar-width: none
+
+    &::-webkit-scrollbar
+        display: none
+
+    & > *
+        flex-shrink: 0
+        // scroll-snap-align: center
+        // background-color: white
+
+@mixin slider($reset: false, $newsize: null)
+    @if $reset
+        @include reset-slider($newsize)
+            @content
+
+        @include vars-mobile.mobile($newsize)
+            @include slider-sass
+
+    @else
+        @include slider-sass

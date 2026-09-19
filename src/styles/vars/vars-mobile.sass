@@ -1,0 +1,17 @@
+$mobile-size: 900px
+
+@mixin mobile($newsize: null)
+    @if $newsize
+        @media (max-width: $newsize)
+            @content
+    @else
+        @media (max-width: $mobile-size)
+            @content
+
+@mixin pc($newsize: null)
+    @if $newsize
+        @media (min-width: $newsize + 1px)
+            @content
+    @else
+        @media (min-width: $mobile-size + 1px)
+            @content

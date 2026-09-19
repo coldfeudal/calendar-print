@@ -1,0 +1,8 @@
+{
+    "watch": [
+        "main.js",
+        "preload.js"
+    ],
+    "exec": "electron .",
+    "ext": "js"
+}

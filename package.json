@@ -1,0 +1,117 @@
+{
+    "name": "template-project",
+    "version": "0.1.0",
+    "main": "main.js",
+    "author": {
+        "name": "coldfeudal",
+        "email": "aaliulov@bk.ru"
+    },
+    "description": "STD-X svelte template project",
+    "type": "module",
+    "scripts": {
+        "svelte:dev": "vite dev --host",
+        "svelte:preview": "vite preview --host",
+        "svelte:build": "vite build",
+        "electron:build": "electron-builder",
+        "bun:transpile-preload": "esbuild electron/preload.ts --bundle --platform=node --format=cjs --outfile=preload.js --external:electron --external:fs --external:path",
+        "bun:transpile-main": "esbuild electron/main.ts --bundle --platform=node --format=esm --outfile=main.js --external:electron --external:fs --external:path",
+        "nodemon:transpile-preload": "nodemon --watch electron/preload.ts --ext ts --exec \"bun run bun:transpile-preload\"",
+        "nodemon:transpile-main": "nodemon --watch electron/main.ts --ext ts --exec \"bun run bun:transpile-main",
+        "nodemon:transpile": "concurrently --names \"main,preload\" \"bun run nodemon:transpile-main\" \"bun run nodemon:transpile-preload\"",
+        "build": "bun run bun:transpile-main && bun run bun:transpile-preload && bun run svelte:build && electron-builder",
+        "dev": "concurrently --names \"renderer,transpile,electron\" \"bun run svelte:dev\" \"bun run nodemon:transpile\" \"nodemon .\"",
+        "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+        "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+        "lint": "eslint ./src ./create-file ./electron",
+        "lint:fix": "eslint ./src ./create-file ./electron --fix",
+        "create": "bun create-file/create.ts"
+    },
+    "build": {
+        "productName": "Template Project",
+        "appId": "ru.std-x.template-project",
+        "files": [
+            "svelte-build",
+            "preload.js",
+            "main.js"
+        ],
+        "win": {
+            "icon": "static/favicon.ico",
+            "target": [
+                "portable",
+                "nsis"
+            ]
+        },
+        "portable": {
+            "artifactName": "${productName} ${version}.exe",
+            "splashImage": "static/stdx-banner.bmp"
+        },
+        "nsis": {
+            "artifactName": "${productName} ${version} - Installer.exe",
+            "oneClick": false,
+            "perMachine": false,
+            "allowElevation": true,
+            "selectPerMachineByDefault": false,
+            "allowToChangeInstallationDirectory": true,
+            "installerIcon": "static/favicon.ico",
+            "uninstallerIcon": "static/favicon.ico",
+            "installerHeaderIcon": "static/favicon.ico",
+            "createDesktopShortcut": true,
+            "createStartMenuShortcut": true,
+            "shortcutName": "${productName}",
+            "installerSidebar": "static/stdx-sidebar.bmp",
+            "uninstallerSidebar": "static/stdx-sidebar.bmp"
+        }
+    },
+    "devDependencies": {
+        "@iconify/svelte": "3.1.6",
+        "@sveltejs/adapter-auto": "3.0.0",
+        "@sveltejs/adapter-node": "5.0.1",
+        "@sveltejs/adapter-static": "3.0.2",
+        "@sveltejs/kit": "2.0.0",
+        "@sveltejs/vite-plugin-svelte": "3.0.0",
+        "@types/eslint": "9.6.1",
+        "@types/node": "20.11.17",
+        "@typescript-eslint/eslint-plugin": "6.21.0",
+        "@typescript-eslint/parser": "6.21.0",
+        "typescript": "5.3.3",
+        "bun": "1.1.22",
+        "concurrently": "8.2.2",
+        "cross-env": "7.0.3",
+        "electron": "31.0.2",
+        "electron-builder": "24.13.3",
+        "esbuild": "0.25.0",
+        "eslint": "8.56.0",
+        "eslint-plugin-svelte": "2.46.1",
+        "eslint-config-prettier": "9.1.0",
+        "eslint-plugin-import": "2.29.1",
+        "eslint-plugin-autofix": "2.2.0",
+        "eslint-plugin-no-template-curly-in-string-fix": "1.0.4",
+        "eslint-plugin-prettier": "5.1.3",
+        "eslint-plugin-modules-newlines": "0.0.7",
+        "glob": "10.4.2",
+        "nodemon": "3.1.4",
+        "prettier": "3.3.3",
+        "prettier-plugin-svelte": "3.2.6",
+        "sass": "1.71.1",
+        "svelte": "4.2.18",
+        "svelte-check": "3.6.0",
+        "svelte-kit-sessions": "0.3.0",
+        "tslib": "2.4.1",
+        "vite": "5.0.3",
+        "wait-on": "7.2.0"
+    },
+    "dependencies": {
+        "css-filter-converter": "1.0.110",
+        "electron-dl": "4.0.0",
+        "electron-serve": "2.0.0",
+        "electron-store": "10.0.0",
+        "electron-updater": "6.2.1"
+    },
+    "trustedDependencies": [
+        "@sveltejs/kit",
+        "bun",
+        "electron",
+        "esbuild",
+        "svelte-preprocess"
+    ]
+}

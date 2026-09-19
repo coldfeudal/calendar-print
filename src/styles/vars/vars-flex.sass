@@ -1,0 +1,51 @@
+@mixin ff
+    display: flex
+    align-items: stretch
+    // justify-content: flex-start
+
+@mixin ffb
+    @include ff
+    justify-content: space-between
+    align-items: center
+
+@mixin ffs
+    @include ff
+    justify-content: flex-start
+    align-items: center
+
+@mixin ffc
+    @include ff
+    justify-content: center
+    align-items: center
+
+@mixin ff-at
+    @include ff
+    align-items: flex-start
+
+@mixin ffb-at
+    @include ffb
+    align-items: flex-start
+
+@mixin ffs-at
+    @include ffs
+    align-items: flex-start
+
+@mixin ffc-at
+    @include ffc
+    align-items: flex-start
+
+@mixin f-col
+    flex-direction: column
+
+@mixin f-col-r
+    flex-direction: column-reverse
+
+@mixin f-row
+    flex-direction: row
+
+@mixin f-row-r
+    flex-direction: row-reverse
+
+@mixin f-1
+    & > *
+        flex: 1

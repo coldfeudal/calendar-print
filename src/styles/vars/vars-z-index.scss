@@ -1,0 +1,45 @@
+$z-index: (
+    // Lower in array means lower z-index
+    "popup",
+    "mob-nav-header",
+    "mob-nav",
+    "header",
+    // Formatter multiline fix
+);
+
+@function revert-list($list) {
+    $length: length($list);
+    $reverted-list: ();
+
+    @for $i from $length to 1 {
+        $reverted-list: append($reverted-list, nth($list, $i));
+    }
+
+    @return $reverted-list;
+}
+
+@function map-values-to-index($map) {
+    $index-map: ();
+
+    @for $i from 1 through length($map) {
+        $key: nth($map, $i);
+        $index-map: map-merge(
+            $index-map,
+            (
+                $key: $i,
+            )
+        );
+    }
+
+    @return $index-map;
+}
+
+$z-index-sorted: map-values-to-index(revert-list($z-index));
+
+@function z-index($key) {
+    @return map-get($z-index-sorted, $key);
+}
+
+@mixin z-index($key) {
+    z-index: z-index($key);
+}
